@@ -3,17 +3,17 @@ import pandas as pd
 import sqlalchemy
 from streamlit_autorefresh import st_autorefresh
 
-from globals import common_variables
+# Use DB URL from Streamlit secrets when deployed
+DB_URL = st.secrets.get("DATABASE_URL", "<LOCAL_URL_IF_YOU_WANT>")
 
-common_variables.engine = sqlalchemy.create_engine(
-    "postgresql+psycopg2://localhost/production"
-)
+engine = sqlalchemy.create_engine(DB_URL)
 
+# Auto refresh
 st_autorefresh(interval=60 * 1000, key="refresh")
 
 def load_data():
     query = "SELECT * FROM ncd_bonds_latest_data WHERE xirr < 18"
-    df = pd.read_sql(query, common_variables.engine)
+    df = pd.read_sql(query, engine)
     return df
 
 st.title("📈 NCD Bonds Latest Data")
