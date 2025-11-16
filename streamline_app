@@ -1,0 +1,22 @@
+import streamlit as st
+import pandas as pd
+import sqlalchemy
+from streamlit_autorefresh import st_autorefresh
+
+from globals import common_variables
+
+common_variables.engine = sqlalchemy.create_engine(
+    "postgresql+psycopg2://localhost/production"
+)
+
+st_autorefresh(interval=60 * 1000, key="refresh")
+
+def load_data():
+    query = "SELECT * FROM ncd_bonds_latest_data WHERE xirr < 18"
+    df = pd.read_sql(query, common_variables.engine)
+    return df
+
+st.title("📈 NCD Bonds Latest Data")
+
+df = load_data()
+st.dataframe(df, use_container_width=True)
