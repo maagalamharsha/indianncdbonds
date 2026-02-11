@@ -1,11 +1,12 @@
 # 🇮🇳 Indian Corporate Bond Risk & Yield Engine
 
-**A high-frequency quantitative risk engine for the Indian Corporate Bond (NCD) market, capable of calculating real-time XIRR for illiquid securities using complex cashflow modeling.**
+**A quantitative risk engine for the Indian Corporate Bond (NCD) market, capable of calculating real-time XIRR for illiquid securities using advanced cashflow modeling.**
 
 ---
 
 ### 🚀 Overview
-This system solves a critical problem in the Indian fixed-income market: **Liquidity & Data Opacity.**
+This system solves a critical problem in the Indian fixed-income market: **Liquidity & Data Opacity.**<br>
+This is custom Bloomberg Indian Bond market traker written for my usecase of identifing mispriced securities.<br>
 Unlike equities, corporate bonds trade offline or with low liquidity, and their cashflow structures (partial redemptions, step-up coupons) are often buried in PDF term sheets.
 
 This engine:
